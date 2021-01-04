@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FYP</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="slideshow.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- core script function -->
+    <script type="text/javascript" src="PrayTimes.js"></script>
+    <script type="text/javascript" src="calen.js"></script>
+    <!-- core script function -->
+    
+</head>
+<body onload="initClock()">
+    
+    <div class="container">
+    <header>
+        <div>Kolej Kemahiran Tinggi MARA Ledang, Mukim Serom 4 & 5, 84410 Tangkak, Johor Darul Takzim</div>
+        
+    </header>
+    <marquee  direction="left">
+        <h3>
+            Allah tidak akan mendekati seseorang sebelum orang itu mendekatiNya dan amalan yang paling dicintai Allah ialah amalan yang dilakukan secara berterusan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            "Barangsiapa yang lambat datang rezekinya hendaklah banyak mengucapkan – La hawla Wala Quwwata Illa billah". (HR. At-Tabrani)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            "Dari setiap kalimat itu seorang malaikat yang bertasbih kepada Allah Ta’ala sampai hari kiamat yang pahala tasbihnya itu diberikan untukmu." (HR. Al-Mustagfiri dalam Ad-Da’awat)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            "Barangsiapa membaca Surah Al-Ikhlas ketika masuk rumah maka berkat bacaan menghilangkan kefakiran dari penghuni rumah dan tetangganya." (HR. At-Tabrani)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </h3>
+    </marquee>   
+    <!--digital clock (start)-->
+        <div class="datetime">
+            <div class="date">
+                <span id="dayname">Day</span>,
+                <span id="month">Month</span>
+                <span id="daynum">00</span>,
+                <span id="year">Year</span>
+            </div>
+    
+            <div class="time">
+                <span id="hour">00</span>:
+                <span id="minutes">00</span>:
+                <span id="seconds">00</span>
+                <span id="period">AM</span>
+            </div>   
+        </div>
+    <!--digital clock (end)-->  
+    
+    <script type="text/javascript">
+        document.write(writeIslamicDate(-1));
+    </script>
+
+    <!--Solat 5 Waktu (start)-->
+    <div id="table"></div>
+    
+    <script type="text/javascript">
+        var date = new Date(); // today
+        prayTimes.setMethod('Egypt'); // Calculation method
+        prayTimes.tune( {subuh: 10, zohor: 2, asar: 2, maghrib:2, isyak: 2} ); // Offset
+        var times = prayTimes.getTimes(date,  [5.3503, 100.2350],); // Lokasi
+        var list = ['Subuh', 'Syuruk', 'Zohor', 'Asar', 'Maghrib', 'Isyak'];
+        var html = '<table id="timetable">';
+        html += '<tr><th colspan="2">'+ 'Waktu Solat' + '</th></tr>';
+        for(var i in list)	{
+            html += '<tr><td>'+ list[i]+ '</td>';
+            html += '<td>'+ times[list[i].toLowerCase()]+ '</td></tr>';
+        }
+        html += '</table>';
+        document.getElementById('table').innerHTML = html;
+    
+    </script>
+    <!--Solat 5 Waktu (end)-->
+
+
+    <!--digital clock calculation start-->
+    <script type="text/javascript">
+    function updateClock(){
+        var now = new Date();
+        var dname = now.getDay(),
+            mo = now.getMonth(),
+            dnum = now.getDate(),
+            yr = now.getFullYear(),
+            hou = now.getHours(),
+            min = now.getMinutes(),
+            sec = now.getSeconds(),
+            pe = "AM";
+
+            if(hou == 0){
+                hou = 12;
+            }
+            if(hou > 12){
+                hou = hou - 12;
+                pe = "PM";
+            }
+
+            Number.prototype.pad = function(digits){
+                for(var n = this.toString(); n.length < digits; n = 0 + n);
+                return n;
+            }
+    
+        var months = ["Januari", "Februari", "Mac", "April", "Mei", "Jun", "July", "Ogos", "September", "Oktober", "November", "Disember"];
+        var week = ["Ahad", "Isnin", "Selasa", "Rabu", "Khamis", "Jumaat", "Sabtu"];
+        var ids = ["dayname", "month", "daynum", "year", "hour", "minutes", "seconds", "period"];
+        var values = [week[dname], months[mo], dnum.pad(2), yr, hou.pad(2), min.pad(2), sec.pad(2), pe];
+        for(var i = 0; i < ids.length; i++)
+        document.getElementById(ids[i]).firstChild.nodeValue = values[i];
+    }
+    
+    function initClock(){
+        updateClock();
+        window:setInterval("updateClock()", 1);
+    }
+    </script>
+    <!--digital clock calculation end-->
+    
+
+
+    <div class="slideshow-container">
+
+        <div class="mySlides fade">
+          <div class="numbertext">1 / 3</div>
+          <img src="image/masjid1.jpg" style="width:100%">
+          <div class="text">Gambar Hiasan</div>
+        </div>
+        
+        <div class="mySlides fade">
+          <div class="numbertext">2 / 3</div>
+          <img src="image/masjid4.png" style="width:100%">
+          <div class="text">Gambar Hiasan</div>
+        </div>
+        
+        <div class="mySlides fade">
+          <div class="numbertext">3 / 3</div>
+          <img src="image/masjid3.jpg" style="width:100%">
+          <div class="text">Gambar Hiasan</div>
+        </div>
+        
+        </div>
+        <br>
+        
+        <div style="text-align:center">
+          <span class="dot"></span> 
+          <span class="dot"></span> 
+          <span class="dot"></span> 
+        </div>
+        
+        <script>
+        var slideIndex = 0;
+        showSlides();
+        
+        function showSlides() {
+          var i;
+          var slides = document.getElementsByClassName("mySlides");
+          var dots = document.getElementsByClassName("dot");
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+          }
+          slideIndex++;
+          if (slideIndex > slides.length) {slideIndex = 1}    
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+          setTimeout(showSlides, 5000); // Change image every 2 seconds
+        }
+        </script>
+
+    
+               
+
+    </div>
+</body>
+</html>
