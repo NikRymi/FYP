@@ -87,8 +87,8 @@ function kuwaiticalendar(adjust){
 function writeIslamicDate(adjustment) {
 	var wdNames = new Array("Ahad","Ithnin","Thulatha","Arbaa","Khams","Jumuah","Sabt");
 	var iMonthNames = new Array("Muharam","Safar","Rabi'ul Awal","Rabi'ul Akhir",
-	"Jumadal Ula","Jumadal Akhira","Rejab","Sha'ban",
-	"Ramadan","Shawwal","Dhul Qa'ada","Dhul Hijja");
+	"Jamadilawal","Jamadilakhir","Rejab","Syaaban",
+	"Ramadan","Syawal","Zulkaedah","Zulhijjah");
 	var iDate = kuwaiticalendar(adjustment);
 	var outputIslamicDate = wdNames[iDate[4]] + ", " 
 	+ iDate[5] + " " + iMonthNames[iDate[6]] + " " + iDate[7] + " AH";
